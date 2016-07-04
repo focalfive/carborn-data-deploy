@@ -1,0 +1,701 @@
+@charset "utf-8";
+/*-----------------------------------------------------------------------------
+[client] Screen Stylesheet
+
+version:   1.0
+date:      05/16/16
+author:    pureye4u
+email:     pureye4u@duzon.com
+
+website:   
+
+version history: 1.0 - Make css for BCB app
+-----------------------------------------------------------------------------*/
+
+/**************************************************
+    Reset
+**************************************************/
+html,body{width:100%;height:100%}
+/*html{overflow-y:scroll}*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,form,fieldset,p,button{margin:0;padding:0}
+body,h1,h2,h3,h4,input,button{font-family:NSR,'돋움',Dotum,'굴림',Gulim,sans-serif;font-size:12px;}
+body{background-color:#fff;*word-break:break-all;-ms-word-break:break-all}
+img,fieldset,iframe{border:0 none}
+li{list-style:none}
+input,select,button{vertical-align:middle}
+img{vertical-align:top}
+i,em,address{font-style:normal}
+label,button{cursor:pointer}
+button{margin:0;padding:0}
+button *{position:relative}
+button img{left:-3px;*left:auto}
+option{padding-right:6px}
+/* hr{display:none} */
+legend{*width:0}
+blockquote:before,blockquote:after,q:before,q:after{content:""; content:none;}
+table{border-collapse:collapse;border-spacing:0;width:100%;table-layout:fixed;}
+a {text-decoration:none;color:#000;}
+a:hover {color:#000;}
+a:active {color:#000;}
+a:visited {color:#000;}
+
+/* HTML5 display-role reset for older browsers */
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;margin:0;padding:0;}
+
+body{
+    background-color: #f5f5f5;
+}
+
+/**************************************************
+    Webfont :: '나눔스퀘어'
+**************************************************/
+
+@font-face {
+ font-family: 'NSR';
+ src: url(webfont/NanumSquareR.eot);
+ src: url(webfont/NanumSquareR.eot?#iefix) format('embedded-opentype'),
+      url(webfont/NanumSquareR.woff) format('woff'),
+      url(webfont/NanumSquareR.ttf) format('truetype');
+}
+
+/**************************************************
+    Common
+**************************************************/
+
+/* Default style */
+.accessibility {overflow:hidden;position:absolute;left:-1000px;top:0;width:0;height:0;font-size:0;line-height:0;visibility:hidden;text-indent:-9999px}
+.hidden {overflow:hidden;position:absolute;top:-10000px;left:-10000px;width:1px;height:1px}
+.blind {overflow:hidden;position:absolute;left:0;top:0;width:0;height:0;margin:0;padding:0;font-size:0;line-height:0;visibility:hidden;}
+
+.skip {display:none;}
+
+/*각 자식요소들 floating 지정으로 높이 인식못하는거 해결*/
+.clear:after{content:"";display:block;clear:both;height:0;visibility:hidden;}
+
+/*position*/
+.posi_re {position:relative !important;}
+.posi_ab {position:absolute !important;}
+
+/* display */
+.dp_ib {display:inline-block; !important;}
+.dp_i {display:inline; !important;}
+.dp_b {display:block; !important;}
+
+/* Align */
+.al {text-align:left !important;}
+.ac {text-align:center !important;}
+.ar {text-align:right !important;}
+
+.vt {vertical-align:top !important;}
+.vm {vertical-align:middle !important;}
+.vb {vertical-align:bottom !important;}
+
+/* Floating */
+.fl {float:left !important;}
+.fr {float:right !important;}
+.cl {clear:both !important;}
+
+/* Font size */
+.f11 {font-size:11px !important;}
+.f12 {font-size:12px !important;}
+
+/* Font weight */
+.fwb {font-weight:bold !important;}
+.fwn {font-weight:normal !important;}
+
+/* Letter-spacing */
+.ls0 {letter-spacing:0 !important;}
+.ls1 {letter-spacing:-1px !important;}
+
+/* background */
+.bg_fe{background:#fefefe;}
+.bg_fb{background:#fbfbfb;}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+/**************************************************
+    Navigation
+**************************************************/
+nav#gnb{position:fixed; z-index: 10; top: 0; left:0; height:100%; width:52px; background:#333948; overflow: hidden;
+	-webkit-transition: width 0.25s; /* Safari */
+	transition: width 0.25s;
+}
+nav#gnb.on{width:220px;}
+
+/**************************************************
+    Header
+**************************************************/
+
+header {
+    position: fixed;
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ebebeb;
+    z-index: 1;
+}
+header .header {
+    height: 60px;
+    min-width: 768px;
+    max-width: 1280px;
+}
+header .logo {
+    display: block;
+    float: left;
+    height: 40px;
+    margin-left: 76px;
+    padding-top: 20px;
+}
+header.sub .logo {
+    visibility: hidden;
+}
+header .company {
+    float: left;
+    margin-left: 10px;
+    padding-top: 3px;
+	-webkit-transition: margin-left 0.25s; /* Safari */
+	transition: margin-left 0.25s;
+}
+header.sub .company {
+    margin-left: 87px;
+}
+
+header .header_R{float:right; right:0; display:inline-block; padding:17px 0 0 0;}
+header .header_R p{float:left;}
+header .header_R .btn a{margin:4px 15px 0 15px;}
+header .header_R .btn .plus{float:left; width:18px; height:22px; background:url('images/ico/header_plus.png') no-repeat 0 0;}
+header .header_R .btn .notice{float:left; width:18px; height:22px; background:url('images/ico/header_notice.png') no-repeat 0 0;}
+header .header_R .btn .question{float:left; width:20px; height:22px; background:url('images/ico/header_question.png') no-repeat 0 0;}
+header .header_R .btn span{position:absolute;  top:18px; margin-left:-10px; background:#ff6565; padding:3px 4px 1px 4px; border-radius:10px; color:#fff;}
+@media screen and (-webkit-min-device-pixel-ratio:0) {header .header_R .btn span{padding:3px 4px 2px 4px;}}
+
+header .search_input{float:left; border-style:solid; border-width:1px 0 1px 1px; border-color:#ececec; height:24px; width:106px; text-indent:12px; border-radius:20px 0 0 20px;}
+header .search_btn{float:left;  height:26px; width:30px; border-radius:0 20px 20px 0; border-style:solid; border-width:1px 1px 1px 0; border-color:#ececec; display:block; background:url('images/ico/header_search.png') no-repeat 0 4px;}
+
+header .gnb_profile{padding-right: 10px;}
+header .gnb_profile .name{float:left; font-size:13px; padding:7px 20px 0 20px; display:inline-block;}
+header .gnb_profile > div{float:left; padding:0px;}
+header .gnb_profile div.profile_wrap{position:relative;}
+header .gnb_profile div .bg_pic {position:absolute; top:0px;background:url('images/bg/bg_pic_radius.png') no-repeat;width:32px;height:32px;}
+header .gnb_profile div .profile_img{float:left;width:32px;height:32px;overflow:hidden;}
+header .gnb_profile div .profile_img img{width:100%;min-height:32px;}
+
+/**************************************************
+    Container
+**************************************************/
+.container {
+    margin-left: 52px;
+    padding-top: 60px;
+    min-width: 716px;
+    min-height: 600px;
+}
+
+/**************************************************
+    Application
+**************************************************/
+#app {
+    height: 100%;
+}
+
+/**************************************************
+    Landing
+**************************************************/
+.landing {
+    height: 100%;
+}
+
+.landing .landing-header {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    width: 100%;
+    min-width: 1280px;
+}
+
+.landing .landing-header h1 {
+    display: block;
+    float: left;
+}
+
+.landing .landing-header h1 a {
+    display: block;
+    padding: 35px 43px;
+    width: 110px;
+    height: 23px;
+}
+
+.landing .landing-header .right-action-item {
+    display: block;
+    float: right;
+    margin: 20px;
+}
+
+.landing .landing-header .button-group {
+    display: block;
+    float: left;
+    padding: 0 15px;
+}
+
+.landing .landing-header .button-group a {
+    display: block;
+    float: left;
+    padding: 7px;
+}
+
+.landing .landing-footer {
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+    width: 100%;
+    min-width: 1280px;
+}
+
+.landing .landing-footer .right-action-item {
+    display: block;
+    float: right;
+    margin: 32px;
+}
+
+.landing .landing-footer .copyright {
+    display: block;
+    float: left;
+    padding: 0 15px;
+}
+
+.landing .landing-footer .footer-button {
+    display: block;
+    float: left;
+    min-width: 100px;
+    height: 30px;
+    margin: 0 8px;
+    padding: 0 30px 0 8px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-image: url('images/landing/landing_footer_sel_ico.png');
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: left;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+/**************************************************
+    Accountancy
+**************************************************/
+.accountancy .acc-nav {
+    position: fixed;
+    left: 52px;
+    top: 0;
+    width: 199px;
+    height: 100%;
+    min-height: 812px;
+    background: #ffffff url('images/temp/snb_dummy.png') no-repeat;
+    border-right: 1px solid #ececec;
+    color: #999999;
+}
+
+.accountancy .content {
+    margin-left: 200px;
+    margin-bottom: 120px;
+}
+
+.accountancy .content-header {
+    position: relative;
+    height: 60px;
+    border-bottom: 1px solid #cccccc;
+    background-color: #ffffff;
+}
+
+.accountancy .content-action {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px 22px 10px 0;
+}
+
+.accountancy .history-navigation {
+    padding: 6px 0;
+    font-size: 10px;
+    line-height: 20px;
+}
+
+.accountancy h4 {
+    padding: 0 15px;
+    font-size: 20px;
+    color: #666666;
+}
+
+.accountancy .data-header {
+    height: 50px;
+}
+
+.accountancy .month-control {
+    float: left;
+    font-size: 22px;
+    color: #333333;
+}
+
+.accountancy .filter-control {
+    float: right;
+    padding: 7px 20px 0;
+}
+
+.accountancy .data-table {
+    padding: 0 20px;
+}
+
+.accountancy ul.data-table-header {
+    height: 40px;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    line-height: 40px;
+    font-size: 14px;
+}
+
+.accountancy ul.data-table-header li {
+    display: block;
+    float: left;
+    width: 100px;
+    height: 40px;
+    padding: 0 20px;
+    text-align: center;
+    color: #888888;
+}
+
+.accountancy .acc-card {
+    position: relative;
+    border-top: 2px solid #E1F5FE;
+    margin: 10px 0 20px;
+    cursor: pointer;
+}
+
+.accountancy .acc-card.selected {
+    border-top: 2px solid #039BE5;
+}
+
+.accountancy .acc-card-header .title span {
+    display: inline-block;
+    height: 14px;
+    margin: 17px 5px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    border: 1px solid #666666;
+}
+
+.accountancy .acc-card-header .flag .distance {
+    display: inline-block;
+    height: 14px;
+    margin: 17px 5px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    background-color: #FF1744;
+    color: #ffffff;
+}
+
+.accountancy .acc-row {
+    display: block;
+    height: 56px;
+    clear: both;
+}
+
+.accountancy .view-mode-list .acc-row {
+    border-bottom: 1px solid #cccccc;
+}
+
+.accountancy .acc-row li {
+    position: relative;
+    display: inline-block;
+    float: left;
+    width: 100px;
+    height: 36px;
+    padding: 10px 20px;
+    line-height: 36px;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #888888;
+}
+
+.accountancy .view-mode-list .selected {
+    background-color: #ffffff;
+}
+
+.accountancy .view-mode-list .acc-list-body {
+    position: relative;
+    border-bottom: 1px solid #FFB74D;
+}
+
+.accountancy .view-mode-list .acc-list-body .group-bar {
+    position: absolute;
+    left: 130px;
+    top: 10px;
+    width: 5px;
+    bottom: 10px;
+    background-color: #B3E5FC;
+}
+
+.accountancy .view-mode-list .acc-row .first-row li:nth-of-type(3) {
+    border-left: 1px solid #cccccc;
+}
+
+.accountancy .view-mode-list .acc-row .mid-row li:nth-of-type(3) {
+    border-left: 1px solid #cccccc;
+}
+
+.accountancy .view-mode-list .acc-row .last-row li:nth-of-type(3) {
+    border-left: 1px solid #cccccc;
+}
+
+.accountancy .acc-row li .owner {
+    display: inline-block;
+    background-color: #cccccc;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 13px;
+    line-height: 26px;
+}
+
+.accountancy .acc-row li .highlight {
+    position: absolute;
+    top: 6px;
+    font-size: 8px;
+    color: #999999;
+    line-height: 8px;
+}
+
+.accountancy .acc-row li.error {
+    color: #FF1744;
+    font-weight: bold;
+}
+
+.accountancy .acc-row li.distance {
+    color: #F44336;
+    font-weight: normal;
+}
+
+.accountancy hr.base-line {
+    clear: both;
+    display: block;
+    height: 1px;
+    margin: 0 30px;
+    overflow: hidden;
+    font-size: 0;
+    background-color: #999999;
+    border: none;
+}
+
+.accountancy .acc-card-body {
+    padding: 10px 0;
+}
+
+.accountancy .acc-card-action {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    opacity: 0;
+	-webkit-transition: opacity 0.5s; /* Safari */
+	transition: opacity 0.5s;
+}
+
+.accountancy .acc-card-action.on {
+    opacity: 1;
+}
+
+.accountancy .data-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.accountancy .data-footer .selected-summary,
+.accountancy .data-footer .total-summary {
+    height: 50px;
+    border-top: 1px solid #cccccc;
+    border-left: 20px solid #4FC3F7;
+}
+
+.accountancy .data-footer .summary-title,
+.accountancy .data-footer .summary-count,
+.accountancy .data-footer .summary-debtor,
+.accountancy .data-footer .summary-creditor,
+.accountancy .data-footer .summary-distance {
+    float: left;
+    display: block;
+    position: relative;
+    height: 50px;
+    padding: 0 20px;
+    line-height: 50px;
+    font-size: 14px;
+}
+
+.accountancy .data-footer .selected-summary .summary-title {
+    width: 560px;
+    padding-left: 120px;
+}
+
+.accountancy .data-footer .total-summary .summary-title {
+    width: 140px;
+    padding-left: 120px;
+}
+
+.accountancy .data-footer .total-summary .summary-count {
+    width: 380px;
+}
+
+.accountancy .data-footer .summary-debtor,
+.accountancy .data-footer .summary-creditor,
+.accountancy .data-footer .summary-distance {
+    width: 100px;
+    text-align: right;
+}
+
+.accountancy .data-footer .highlight {
+    position: absolute;
+    top: 6px;
+    font-size: 8px;
+    color: #999999;
+    line-height: 8px;
+}
+
+.accountancy .data-footer .summary-count .highlight {
+}
+
+.accountancy .data-footer .summary-debtor .highlight,
+.accountancy .data-footer .summary-creditor .highlight,
+.accountancy .data-footer .summary-distance .highlight {
+    right: 20px;
+}
+
+.accountancy .data-footer .summary-distance,
+.accountancy .data-footer .summary-distance .highlight {
+    color: #FF1744;
+}
+
+.accountancy .data-footer .summary-distance {
+    text-decoration: underline;
+}
+
+.dialog-title-bar {
+    position: relative;
+    padding: 18px 22px;
+}
+
+.dialog-title-bar h2 {
+    font-size: 12px;
+}
+
+.dialog-title-bar h3 {
+    font-size: 22px;
+    color: #333333;
+}
+
+.dialog-title-bar .statement-seq {
+    position: absolute;
+    right: 22px;
+    top: 18px
+}
+
+.dialog-title-bar .statement-seq .label {
+    font-size: 10px;
+    text-align: center;
+}
+
+.dialog-header {
+    background-color: #eeeeee;
+    border-top: 1px solid #cccccc;
+    padding: 10px 24px;
+    height: 100px;
+}
+
+.dialog-body {
+    padding: 0 24px 24px;
+}
+
+.dialog-body .acc-statement-row {
+    display: block;
+    height: 56px;
+    clear: both;
+    border-bottom: 1px solid #cccccc;
+}
+
+.dialog-body .acc-statement-row li {
+    position: relative;
+    display: inline-block;
+    float: left;
+    width: 100px;
+    height: 36px;
+    padding: 10px 20px;
+    line-height: 36px;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #888888;
+}
+
+.dialog-body .acc-statement-row .owner {
+    display: inline-block;
+    background-color: #cccccc;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 13px;
+    line-height: 26px;
+}
+
+.dialog-body .acc-statement-row .highlight {
+    position: absolute;
+    top: 6px;
+    font-size: 8px;
+    color: #999999;
+    line-height: 8px;
+}
+
+.dialog-body .acc-statement-row li.error {
+    color: #FF1744;
+    font-weight: bold;
+}
+
+.dialog-body .acc-statement-row li.distance {
+    color: #F44336;
+    font-weight: normal;
+}
+
+.dialog-body hr.base-line {
+    clear: both;
+    display: block;
+    height: 1px;
+    margin: 0 30px;
+    overflow: hidden;
+    font-size: 0;
+    background-color: #999999;
+    border: none;
+}
+
+.dialog-body .dialog-statement-list {
+    margin: 0;
+    padding: 0;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.dialog-body .acc-statement-row-input {
+    display: block;
+    height: 56px;
+    clear: both;
+    border-left: 10px solid #4FC3F7;
+/*     border-bottom: 1px solid #cccccc; */
+}
+
+.dialog-body .acc-statement-row-input li {
+    position: relative;
+    display: block;
+    float: left;
+    width: 120px;
+    height: 56px;
+    overflow: hidden;
+    padding: 0 10px;
+}
