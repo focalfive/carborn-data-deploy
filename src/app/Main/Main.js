@@ -1,12 +1,27 @@
 import React from 'react';
+import Navigation from './Navigation';
+import Header from './Header';
+import CarbornDataBuilder from '../CarbornDataBuilder';
 
 
 class Main extends React.Component {
 
+    state = {
+        navigationOpen: false,
+    }
+
+    leftMenuDidTouch = () => {
+        this.setState({
+            navigationOpen: !this.state.navigationOpen,
+        });
+    }
+
     render() {
-    console.log(this.props.location.pathname);
         return (
             <div>
+                <Header onLeftMenuTouchTap={this.leftMenuDidTouch} />
+                <Navigation onRequestChange={this.leftMenuDidTouch} open={this.state.navigationOpen} />
+                <CarbornDataBuilder />
             </div>
         );
     }

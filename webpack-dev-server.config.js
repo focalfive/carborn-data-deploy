@@ -29,7 +29,7 @@ const config = {
         hot: true,
         inline: true,
         //Port Number
-        port: 3000,
+        port: 8000,
         //Change to '0.0.0.0' for external facing server
         host: 'localhost',
     },

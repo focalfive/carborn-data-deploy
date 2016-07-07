@@ -36,8 +36,6 @@ class User {
             cookie.remove('userInfo');
             this.didLoginFail();
         });
-
-        return promise;
     }
 
     checkLogin = () => {

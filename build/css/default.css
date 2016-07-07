@@ -11,4 +11,4 @@ website:
 
 version history: 1.0 - Make css for BCB app
 -----------------------------------------------------------------------------*/
-body {}
+html, body {margin: 0; padding: 0;}

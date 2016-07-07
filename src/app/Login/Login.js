@@ -1,10 +1,11 @@
 import React from 'react';
 import $ from 'jquery';
 import cookie from 'react-cookie';
+import history from '../History';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import CircularProgress from 'material-ui/CircularProgress';
-import User from '../User';
+import {ParseUser} from '../User';
 
 const styles = {
     template: {
@@ -71,12 +72,19 @@ class Login extends React.Component {
     }
 
     sendLogin = () => {
-        console.log('send login');
         this.setState({
             progress: true,
         });
 
-        User.getSharedObject().login(this.state.username, this.state.password);
+        ParseUser.getSharedObject().login(this.state.username, this.state.password, () => {
+            history().push('/');
+            // location.href = '#/';
+        }, () => {
+            this.setState({
+                usernameErrorText: 'Check User e-mail',
+                passwordErrorText: 'Check Password',
+            });
+        });
     }
 
     render() {

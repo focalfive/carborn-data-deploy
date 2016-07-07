@@ -1,17 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, useRouterHistory } from 'react-router';
-import { createHashHistory } from 'history';
+import history from './History';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import cookie from 'react-cookie';
 import $ from 'jquery';
-import Navigation from './Navigation';
-import Header from './Header';
 import Main from './Main';
 import Login from './Login';
-import User from './User';
+import {ParseUser} from './User';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -19,32 +17,20 @@ import User from './User';
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
-const appHistory = useRouterHistory(createHashHistory)({queryKey: false});
+const appHistory = history();
 const muiTheme = getMuiTheme();
-let loginRedirectRoute = null;
+const user = ParseUser.getSharedObject();
+user.appId = 'IvBZLAh4TFKfiG7vewerHgZpuWAjNMHowGSg2PMZ';
+user.apiKey = 'kJbBe3wvZnh75A1GThWK15M27QomYQZhWxdIDTFO';
 
-User.getSharedObject().didLoginFail = () => {
-    loginRedirectRoute = location.pathname;
-    appHistory.replace('login');
-}
-User.getSharedObject().didLoginSuccess = () => {
-    appHistory.push('');
-}
 const checkLogin = () => {
-    User.getSharedObject().checkLogin();
+    if(!user.logged) {
+        appHistory.replace('login');
+    }
 }
 
 /// Application component
 class App extends React.Component {
-    state = {
-        navigationOpen: false,
-    }
-
-    leftMenuDidTouch = () => {
-        this.setState({
-            navigationOpen: !this.state.navigationOpen,
-        });
-    }
 
     /**
      * Render view
@@ -55,11 +41,7 @@ class App extends React.Component {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div className="app">
-                    <Header onLeftMenuTouchTap={this.leftMenuDidTouch} />
-                    <Navigation onRequestChange={this.leftMenuDidTouch} open={this.state.navigationOpen} />
-                    <div className="container">
-                        {this.props.children}
-                    </div>
+                    {this.props.children}
                 </div>
             </MuiThemeProvider>
         );
